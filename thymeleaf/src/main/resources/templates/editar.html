@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Document</title>
+</head>
+<body>
+        <form action="#" th:action="@{/saveEditar}" method="post" th:object="${user}" >
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><header><input th:placeholder ="id" th:field="*{cc}" ></header></td>
+                        <td><input th:placeholder ="name" th:field="*{name}" ></td>
+                        <td><input th:placeholder ="mail" th:field="*{mail}" ></td>
+                        <td><a th:href="${'/borrar/'+user.cc}">Borrar Usuario</a></td>
+                    </tr>
+                    <tr th:if="${#fields.hasAnyErrors()}">
+                        <td th:if="${#fields.hasErrors('name')}"><span th:errors="*{name}"> Nombre erroneo</span></td>
+                        <td th:if="${#fields.hasErrors('mail')}"><span th:errors="*{mail}"> Mail erroneo</span></td>
+                    </tr>
+                </tbody>
+            </table>    
+            <input type="submit" th:value="Guardar">
+    
+        </form>
+</body>
+</html>

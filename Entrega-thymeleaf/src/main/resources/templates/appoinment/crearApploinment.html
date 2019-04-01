@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Agregar Cita</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <form action="#" th:action="@{/saveApp}" th:object="${appoinment}" method="POST">
+        <input type="hidden" th:field="*{id}" th:value="*{id}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Medico</th>
+                    <th>Paciente</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select th:field="*{medic}">
+                            <option th:each=" med: ${medicos}" th:value="${med}" th:text="${med.name}"></option>
+                        </select>
+                    </td>
+                    <td>
+                        <select th:field="*{pacient}">
+                            <option th:each=" p: ${pacientes}" th:value="${p}" th:text="${p.name}"></option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="date" th:field="*{date}" >
+                    </td>
+                    <td>
+                        <input type="time" th:value="*{hora}" th:field="*{hora}">
+                    </td>
+                   
+                </tr>
+            </tbody>
+        </table>
+        <div class="opciones">
+            <a th:href="@{/listarApp}" class="opcion">Volver al listado</a>
+            <a class="opcion" th:if="${editar}" th:href="${'/deleteApp/'+appoinment.id}">Eliminar</a>
+            <input class="button" type="submit" th:value="Guardar">
+        </div>
+    </form>
+</body>
+
+</html>

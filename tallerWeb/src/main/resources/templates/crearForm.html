@@ -1,0 +1,46 @@
+<html>
+
+<head>
+	<title>Adicionar Libros</title>
+	<link rel="stylesheet" href="inicio.css" type="text/css">
+</head>
+
+<body>
+	<div>
+		<div>
+			<div>
+				<h1>Adicionar Libros</h1>
+			</div>
+		</div>
+		<div>
+			<div>
+				<a href="#" th:href="@{/listar}"> Volver al listado </a>
+				<form action="#" class="form-horizontal" th:action="@{/guardar}" th:object="${form}" method="post">
+					<fieldset>
+						<span> <input type="submit" id="submitButton" th:value="Guardar"> <input type="reset"
+								id="resetButton" th:value="Resetear" />
+						</span>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Título</th>
+									<th>Autor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="book, itemStat : *{books}">
+									<td><input th:placeholder="Title + ' ' + ${itemStat.count}"
+											th:field="*{books[__${itemStat.index}__].title}" /></td>
+									<td><input th:placeholder="Author + ' ' + ${itemStat.count}"
+											th:field="*{books[__${itemStat.index}__].author}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <form action="#" th:action="@{/saveEditar}" method="post" th:object="${user}">
+        <input type="hidden" th:placeholder="id" th:field="*{cc}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Genero</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    
+                    <td><input th:placeholder="name" th:field="*{name}"></td>
+                    <td><input th:placeholder="mail" th:field="*{mail}"></td>
+                    <td>
+                        <select th:field="*{rol}">
+                            <option th:each="rolt : ${roles}" th:value="${rolt}" th:text="${rolt}"></option>
+                        </select>
+                    </td>
+                    <td><input type="date" th:field="*{fechaNacimiento}" required></td>
+                    <td>
+                        <select th:field="*{genero}">
+                            <option th:each="g : ${generos}" th:value="${g}" th:text="${g}"></option>
+                        </select></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <ul th:if="${#fields.hasAnyErrors()}" th:text="Hay errores en la información">
+                <li th:if="${#fields.hasErrors('name')}"><span th:errors="*{name}"> Nombre erroneo</span></li>
+                <li th:if="${#fields.hasErrors('mail')}"><span th:errors="*{mail}"> Mail erroneo</span></li>
+            </ul>
+            <div class="opciones">
+                <input class="button" type="submit" th:value="Guardar">
+                <a class="opcion" th:href="${'/borrar/'+user.cc}">Borrar Usuario</a>
+            </div>
+            
+        </form>
+</body>
+</html>

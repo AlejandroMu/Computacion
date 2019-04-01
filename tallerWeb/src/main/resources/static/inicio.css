@@ -1,0 +1,19 @@
+h1{
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+    margin-top: 10%;
+    margin-left: 10%;
+
+}
+h1{
+    font-size: 20px;
+    font-weight: bold;
+}
+a{
+    margin: 10px;
+}
+tr{
+    border-radius: 2px;
+    padding: 50px;
+}

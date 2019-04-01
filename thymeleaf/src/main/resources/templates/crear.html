@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>
+        Crear usuario
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="#" th:action="@{/saveCrear}" method="post" th:object="${user}" >
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>mail</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr>
+                    <td><input id ="name" th:placeholder="Name" th:field="*{name}"></td>
+                     <td><input id="mail" th:placeholder ="mail" th:field="${user.mail}"></td>
+                </tr>
+                <tr th:if="${#fields.hasAnyErrors()}">
+                    <td th:if="${#fields.hasErrors('name')}"><span th:errors="*{name}"> Nombre erroneo</span></td>
+                    <td th:if="${#fields.hasErrors('mail')}"><span th:errors="*{mail}"> Mail erroneo</span></td>
+                </tr>
+            </tbody>
+        </table>    
+        <input type="submit" th:value="Guardar">
+
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>
+        Crear usuario
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="#" th:action="@{/saveCrear}" method="post" th:object="${user}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Genero</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input id="name" th:placeholder="Name" th:field="*{name}"></td>
+                    <td><input id="mail" th:placeholder="mail" th:field="*{mail}"></td>
+                    <td>
+                        <select th:field="*{rol}">
+                            <option th:each="rolt : ${roles}" th:value="${rolt}" th:text="${rolt}"></option>
+                        </select>
+                    </td>
+                    <td><input type="date" th:field="*{fechaNacimiento}" required></td>
+                    <td>
+                        <select th:field="*{genero}">
+                            <option th:each="g : ${generos}" th:value="${g}" th:text="${g}"></option>
+                        </select></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul th:if="${#fields.hasAnyErrors()}">
+            <li th:if="${#fields.hasErrors('name')}"><span th:errors="*{name}"> Nombre erroneo</span></li>
+            <li th:if="${#fields.hasErrors('mail')}"><span th:errors="*{mail}"> Mail erroneo</span></li>
+        </ul>
+        <div class="opciones">
+                <a th:href="@{/listar}" class="opcion">Volver al listado</a>
+        <input class="button" type="submit" th:value="Guardar">
+    </div>
+    </form>
+
+</body>
+
+</html>

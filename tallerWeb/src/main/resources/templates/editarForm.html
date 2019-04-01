@@ -1,0 +1,51 @@
+<html>
+
+<head>
+	<title>Editar Libros</title>
+	<link rel="stylesheet" href="inicio.css" type="text/css">
+</head>
+
+<body>
+	<div>
+		<div>
+			<div>
+				<h1>Editar Libros</h1>
+			</div>
+		</div>
+		<div>
+			<div>
+				<a href="#" th:href="@{/listar}"> Volver al listado </a>
+				<form action="#" class="form-horizontal" th:action="@{/guardar}" th:object="${form}" method="post">
+					<fieldset>
+						<span> <input type="submit" id="submitButton" th:value="Guardar"> <input type="reset"
+								id="resetButton" th:value="Resetear" />
+						</span>
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Título</th>
+									<th>Autor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="book, itemStat : ${books}">
+									<td><input hidden th:name="|books[${itemStat.index}].id|"
+											th:value="${book.getId()}" /></td>
+									<td><input th:placeholder="Title + ' ' + ${itemStat.count}"
+											th:name="|books[${itemStat.index}].title|" th:value="${book.getTitle()}" />
+									</td>
+									<td><input th:placeholder="Author + ' ' + ${itemStat.count}"
+											th:name="|books[${itemStat.index}].author|"
+											th:value="${book.getAuthor()}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

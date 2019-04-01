@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Listar</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="conteiner">
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="id">ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Genero</th>
+                </tr>
+            </thead>
+            <tbody>            
+                <tr th:each="user : ${users}">
+                    <td class="id"><a th:text="${user.cc}" th:href="${'/editar/'+user.cc}">id</a></td>
+                    <td><a th:text="${user.name}" th:href="${'/filtrarCitas/'+user.cc}">name</a></td>
+                    <td th:text="${user.mail}"> mail</td>
+                    <td><a th:text="${user.rol}" th:href="${'/filtrar/'+user.rol}"> Rol</a></td>
+                    <td th:text="${#dates.format(user.fechaNacimiento,'dd MMM yyyy')}"> Birthday</td>
+                    <td th:text="${user.genero}"> Genero</td>
+                </tr>
+            </tbody>
+        </table>
+        <div  class="empty" th:if="${users.empty}">
+            <p>No hay Usuarios</p>
+        </div>
+        <div class="opciones">
+            <a class="opcion" href="#" th:href="@{/crearUsuario}">Crear</a>
+            <a class="opcion" th:if="${filter}" href="#" th:href="@{/listar}">Volver a Listado</a>
+            <a class="opcion" th:href="@{/}">Volver a inicio</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

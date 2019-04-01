@@ -1,0 +1,47 @@
+body{
+    background-color: aquamarine;
+}
+tr{
+    height: 20px;
+    color: rgb(226, 159, 226);
+    background-color: gray;
+    text-align: center;
+    margin: 2px 0px;
+    padding: 2px 0px;
+    font-size: 25px;
+}
+input{
+    width: 100%;
+    background-color: transparent;
+}
+div{
+    margin: 10px;
+    padding: 5px;
+}
+thead{
+    background-color: beige;
+    text-align: center;
+}
+td{
+    margin: 2px 0px;
+    padding: 2px 0px;
+}
+table{
+    size: 100%;
+    width: 100%;
+}
+tr:nth-child(2n+1){
+    background-color:wheat;
+    color: rgb(211, 101, 211);
+}
+tr:hover{
+    height: 50px;
+}
+.id{
+    width: 20%;
+}
+.crear{
+    font-size: 30px;
+    text-align: center;
+    padding-left:30%; 
+}
