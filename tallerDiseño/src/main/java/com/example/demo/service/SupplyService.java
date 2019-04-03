@@ -18,11 +18,10 @@ public class SupplyService {
 	private MedicineRepository medicines;
 
 	
-	private int currentId;
 	
 	public Supply addSupply(Supply newSupply)throws Exception {
-		Pacient p=pacients.getPacient(newSupply.getPacient().getDocument());
-		Medicine med=medicines.getMedicine(newSupply.getMedicine().getId());
+		Pacient p=pacients.findByDocument(newSupply.getPacient().getDocument());
+		Medicine med=medicines.findById(newSupply.getMedicine().getId()).get();
 		if(p!=null&&p.isState()) {
 			if(med!=null){
 				List<MedicineInventory> ientorynv=med.getInventories();
@@ -31,9 +30,8 @@ public class SupplyService {
 					amountAviable+=medicineInventory.getAmountAvailable();
 				}				
 				if(amountAviable>=newSupply.getAmount()) {
-					newSupply.setId(currentId++);
 					newSupply.setDateHour(new Date());
-					supplys.addSupply(newSupply);
+					supplys.save(newSupply);
 					int target=newSupply.getAmount();
 					for (MedicineInventory medicineInventory : ientorynv) {
 						int a=medicineInventory.getAmountAvailable();
@@ -60,11 +58,11 @@ public class SupplyService {
 		return newSupply;
 	}
 	public Supply getSupply(int id) {
-		Supply s=supplys.getSupply(id);
+		Supply s=supplys.findById(id).get();
 		return s;
 	}
 	public void remove(Supply supply) {
-		supplys.remove(supply);
+		supplys.delete(supply);
 	}
 	
 	

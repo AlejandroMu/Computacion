@@ -7,14 +7,20 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.*;
 
+import javax.persistence.*;
+
+@Entity
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class UrgencyAtention {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@NonNull
 	private Date dateHour;
 	@NonNull
+	@ManyToOne
 	private Pacient pacient;
 	@NonNull
 	private String generalDescription;
@@ -26,5 +32,6 @@ public class UrgencyAtention {
 	@NonNull
 	private String observations;
 	@NonNull
+	@OneToMany
 	private List<Supply> supplys;
 }

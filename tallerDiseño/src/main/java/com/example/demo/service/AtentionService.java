@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
 import java.util.List;
 
@@ -21,12 +21,11 @@ public class AtentionService {
 	private PacientRepository pacients;
 	@Autowired
 	private SupplyService supplyService;
-	private int index;
 
 	public boolean addAtention(UrgencyAtention atention) throws Exception {
 		Pacient pacient = atention.getPacient();
 		List<Supply> supplys = atention.getSupplys();
-		Pacient p1=pacients.getPacient(pacient.getDocument());
+		Pacient p1=pacients.findByDocument(pacient.getDocument());
 		if (pacient.isState()&&p1!=null) {
 			for (Supply supply : supplys) {
 				if (!supply.getPacient().getDocument().equals(pacient.getDocument())) {
@@ -52,9 +51,8 @@ public class AtentionService {
 				}
 				throw e1;
 			}
-			atention.setId(index++);
 			atention.setDateHour(new Date());
-			atentions.addAtencion(atention);
+			atentions.save(atention);
 			
 		}else {
 			throw new Exception("El paciente no esta activo");
@@ -62,7 +60,13 @@ public class AtentionService {
 		return true;
 	}
 	public List<UrgencyAtention> getAtencions(){
-		return atentions.getAllAtentions();
+		List<UrgencyAtention> atention=new ArrayList<UrgencyAtention>();
+		Iterator<UrgencyAtention> it=atentions.findAll().iterator();
+		while(it.hasNext()){
+			atention.add(it.next());
+		}
+
+		return atention;
 	}
 
 }
