@@ -17,8 +17,7 @@ public class SupplyService {
 	@Autowired
 	private MedicineRepository medicines;
 
-	
-	
+
 	public Supply addSupply(Supply newSupply)throws Exception {
 		Pacient p=pacients.findByDocument(newSupply.getPacient().getDocument());
 		Medicine med=medicines.findById(newSupply.getMedicine().getId()).get();
