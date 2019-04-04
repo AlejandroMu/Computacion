@@ -19,7 +19,7 @@ public class SupplyService {
 
 
 	public Supply addSupply(Supply newSupply)throws Exception {
-		Pacient p=pacients.findByDocument(newSupply.getPacient().getDocument());
+		Pacient p=pacients.findById(newSupply.getPacient().getDocument()).get();
 		Medicine med=medicines.findById(newSupply.getMedicine().getId()).get();
 		if(p!=null&&p.isState()) {
 			if(med!=null){

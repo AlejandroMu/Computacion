@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import java.util.*;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +11,11 @@ import javax.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Medicine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

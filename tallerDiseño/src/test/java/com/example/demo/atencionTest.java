@@ -2,7 +2,6 @@ package com.example.demo;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,12 +18,9 @@ import com.example.demo.model.MedicineInventory;
 import com.example.demo.model.Pacient;
 import com.example.demo.model.Supply;
 import com.example.demo.model.UrgencyAtention;
-import com.example.demo.repository.AtentionRepository;
 import com.example.demo.repository.MedicineRepository;
 import com.example.demo.repository.PacientRepository;
-import com.example.demo.repository.SupplyRepository;
 import com.example.demo.service.AtentionService;
-import com.example.demo.service.SupplyService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=TallerDiseñoApplication.class)
@@ -75,8 +66,8 @@ public class atencionTest {
 		sup.setMedicine(medicine);
 		supplys.add(sup);
 		urgency.setSupplys(supplys);
-		pacients.addPacient(pacient);
-		medicines.addMedicine(medicine);
+		pacients.save(pacient);
+		medicines.save(medicine);
 	}
 
 	@Test
@@ -104,7 +95,6 @@ public class atencionTest {
 			service.addAtention(urgency);
 			fail();
 		}catch (Exception e) {
-			// TODO: handle exception
 			List<UrgencyAtention> atentions=service.getAtencions();
 			assertTrue(atentions.isEmpty());
 		}

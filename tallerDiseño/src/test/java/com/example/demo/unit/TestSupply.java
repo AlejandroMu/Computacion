@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,8 @@ public class TestSupply {
 	private Pacient pacient;
 	private Supply supply;
 	private Medicine medicine;
-
+	private Optional<Pacient> op;
+	private Optional<Medicine> opM;
 	@Before
 	public void before() {
 		MockitoAnnotations.initMocks(this);
@@ -51,6 +53,7 @@ public class TestSupply {
 		pacient.setLastNames("wq");
 		pacient.setNames("Juan");
 		pacient.setState(true);
+		op=Optional.of(pacient);
 
 		supply = new Supply();
 		supply.setAmount(10);
@@ -66,17 +69,19 @@ public class TestSupply {
 		inve.add(inventory);
 		medicine.setInventories(inve);
 		supply.setMedicine(medicine);
+		opM=Optional.of(medicine);
+
 	}
 
 	@Test
 	public void addSupply() {
-		when(pacients.getPacient("101")).thenReturn(pacient);
-		when(medicines.getMedicine(1)).thenReturn(medicine);
+		when(pacients.findById("101")).thenReturn(op);
+		when(medicines.findById(1)).thenReturn(opM);
 		try {
 			service.addSupply(supply);
 			assertTrue(true);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			fail();
 		}
 
@@ -85,8 +90,8 @@ public class TestSupply {
 	@Test(expected = Exception.class)
 	public void addSupplyFail() throws Exception {
 		supply.setAmount(15);
-		when(pacients.getPacient("101")).thenReturn(pacient);
-		when(medicines.getMedicine(1)).thenReturn(medicine);
+		when(pacients.findById("101")).thenReturn(op);
+		when(medicines.findById(1)).thenReturn(opM);
 
 		service.addSupply(supply);
 
@@ -95,20 +100,19 @@ public class TestSupply {
 	@Test(expected = Exception.class)
 	public void addSupplyFailPacient() throws Exception {
 		pacient.setState(false);
-		when(pacients.getPacient("101")).thenReturn(pacient);
-		when(medicines.getMedicine(1)).thenReturn(medicine);
+		when(pacients.findById("101")).thenReturn(op);
+		when(medicines.findById(1)).thenReturn(opM);
 		service.addSupply(supply);
 	}
 
 	@Test
 	public void testUpdateAviable() {
-		when(pacients.getPacient("101")).thenReturn(pacient);
-		when(medicines.getMedicine(1)).thenReturn(medicine);
+		when(pacients.findById("101")).thenReturn(op);
+		when(medicines.findById(1)).thenReturn(opM);
 		try {
 			service.addSupply(supply);
 			assertTrue(inventory.getAmountAvailable()==1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			fail();
 		}
 	}
@@ -116,13 +120,12 @@ public class TestSupply {
 	
 	public void updateSupplyFail()  {
 		supply.setAmount(15);
-		when(pacients.getPacient("101")).thenReturn(pacient);
-		when(medicines.getMedicine(1)).thenReturn(medicine);
+		when(pacients.findById("101")).thenReturn(op);
+		when(medicines.findById(1)).thenReturn(opM);
 		try {
 			service.addSupply(supply);
 			fail();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			assertTrue(inventory.getAmountAvailable()==11);
 		}
 
@@ -130,8 +133,8 @@ public class TestSupply {
 
 	public void updateSupplyFailPacient()  {
 		pacient.setState(false);
-		when(pacients.getPacient("101")).thenReturn(pacient);
-		when(medicines.getMedicine(1)).thenReturn(medicine);
+		when(pacients.findById("101")).thenReturn(op);
+		when(medicines.findById(1)).thenReturn(opM);
 
 		try {
 			service.addSupply(supply);

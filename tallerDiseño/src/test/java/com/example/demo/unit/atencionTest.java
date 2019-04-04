@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +24,6 @@ import com.example.demo.model.Supply;
 import com.example.demo.model.UrgencyAtention;
 import com.example.demo.repository.AtentionRepository;
 import com.example.demo.repository.PacientRepository;
-import com.example.demo.repository.SupplyRepository;
 import com.example.demo.service.AtentionService;
 import com.example.demo.service.SupplyService;
 
@@ -42,6 +42,7 @@ public class atencionTest {
 	private UrgencyAtention urgency;
 	private Pacient pacient;
 	private List<Supply> supplys;
+	private Optional<Pacient> op;
 
 	@Before
 	public void before() {
@@ -74,11 +75,13 @@ public class atencionTest {
 		sup.setMedicine(medicine);
 		supplys.add(sup);
 		urgency.setSupplys(supplys);
+		op=Optional.of(pacient);
+
 	}
 
 	@Test
 	public void registrarUrgencia() throws Exception {
-		when(pacients.getPacient("101")).thenReturn(pacient);
+		when(pacients.findById("101")).thenReturn(op);
 		for (Supply suppl : supplys) {
 			when(supply.addSupply(suppl)).thenReturn(suppl);
 		}
@@ -93,13 +96,13 @@ public class atencionTest {
 	@Test(expected=Exception.class)
 	public void registrarFailPacient() throws Exception {
 		pacient.setState(false);
-		when(pacients.getPacient("101")).thenReturn(pacient);
+		when(pacients.findById("101")).thenReturn(op);
 		service.addAtention(urgency);
 
 	}
 	@Test
 	public void registrarFailSupply() throws Exception {
-		when(pacients.getPacient("101")).thenReturn(pacient);
+		when(pacients.findById("101")).thenReturn(op);
 		for (Supply suppl : supplys) {
 			suppl.setAmount(20);
 			when(supply.addSupply(suppl)).thenThrow(Exception.class);
@@ -108,7 +111,6 @@ public class atencionTest {
 			service.addAtention(urgency);
 			fail();
 		}catch (Exception e) {
-			// TODO: handle exception
 			List<UrgencyAtention> atentions=service.getAtencions();
 			assertTrue(atentions.isEmpty());
 		}

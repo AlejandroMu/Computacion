@@ -62,8 +62,8 @@ public class supplyTest {
 		
 		medicine.setInventories(inv);
 		supply.setMedicine(medicine);
-		pacients.addPacient(pacient);
-		medicines.addMedicine(medicine);
+		pacients.save(pacient);
+		medicines.save(medicine);
 
 	}
 
@@ -74,7 +74,6 @@ public class supplyTest {
 			service.addSupply(supply);
 			assertTrue(true);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			fail();
 		}
 	}
@@ -104,7 +103,6 @@ public class supplyTest {
 			}
 			assertTrue(amount == 3);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			fail();
 		}
 	}
@@ -131,7 +129,6 @@ public class supplyTest {
 			service.addSupply(supply);
 			fail();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			List<MedicineInventory> in = medicine.getInventories();
 			int amount = 0;
 			for (MedicineInventory medicineInventory : in) {
