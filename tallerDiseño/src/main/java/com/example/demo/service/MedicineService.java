@@ -27,7 +27,7 @@ public class MedicineService{
             t.setMedicine(m1);
         }
         m1.setInventories(l);
-        medicines.save(m1);
+        medicines.save(m1); 
 
     }
 }

@@ -5,10 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import lombok.RequiredArgsConstructor;
 @Entity
 @Data
@@ -19,12 +20,14 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@NonNull
+	@Email
 	private String login;
 	@NonNull
 	private String name;
 	@NonNull
 	private String lastName;
 	@NonNull
+	@NotEmpty
 	private char[] password;
 
 	private boolean state;

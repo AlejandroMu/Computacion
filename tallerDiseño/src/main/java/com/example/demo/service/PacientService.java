@@ -14,7 +14,7 @@ public class PacientService{
     @PostConstruct
     public void post(){
         Pacient pacien=new Pacient("Juan", "Dias", "Sistemas");
-        pacien.setDocument("document");
+        pacien.setDocument("1234");
         pacien.setState(true);
         pacients.save(pacien);
         
