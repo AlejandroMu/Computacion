@@ -29,4 +29,10 @@ public class InventoryService{
         }
         return ret;
     }
+	public void saveAll(List<MedicineInventory> l) {
+        for (MedicineInventory var : l) {
+            inventories.save(var);
+            
+        }
+	}
 }

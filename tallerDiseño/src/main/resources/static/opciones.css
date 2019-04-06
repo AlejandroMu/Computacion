@@ -1,0 +1,21 @@
+.conteiner{
+    width: 50%;
+    height: auto;
+    background-color: burlywood;
+    border-radius: 15px;
+    margin: 150px auto;   
+
+
+}
+
+.opcion{
+    width: 33%;
+    height: 100px;
+    background-color: antiquewhite;
+    font-size: 20px;
+    margin: auto;
+    border-radius: 10px;
+}
+.opcion:hover{
+    background-color: gray;
+}

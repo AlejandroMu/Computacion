@@ -19,7 +19,7 @@ public class UrgencyAtention {
 	private int id;
 	@NonNull
 	private Date dateHour;
-	@NonNull
+	
 	@ManyToOne
 	private Pacient pacient;
 	@NonNull
@@ -27,7 +27,7 @@ public class UrgencyAtention {
 	@NonNull
 	private String procedureDone;
 	private boolean transfer;
-	@NonNull
+	
 	private String placeTransfer;
 	@NonNull
 	private String observations;

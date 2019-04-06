@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    
     <title>Bienvenido</title>
     <link rel="stylesheet" href="opciones.css">
 </head>
 
 <body>
     <form th:action="@{/evaluar}" th:object="${user}" method="post">
-        <div>
-            <input type="submit" value="CrearAtencion" th:text="*{login}">
-            <input type="submit" value="CrearModificar">
-            <input type="submit" value="CrearSuministro">
+        <div class="conteiner">
+            <input class="opcion" type="submit" name="action" value="Realizar Atención" >
+            <input class="opcion" type="submit" name="action" value="Perfil" >
+            <input class="opcion" type="submit" name="action" value="Agregar Suministro">
         </div>
     </form>
 </body>

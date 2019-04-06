@@ -11,25 +11,24 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Data 
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Supply {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@NonNull
+	
 	@ManyToOne
 	private Medicine medicine;
-	private int amount; 
-	@NonNull
+	private Integer amount; 
+	
 	@ManyToOne
 	private Pacient pacient; 
-	@NonNull 
+	
 	private Date dateHour; 
-	@NonNull 
+	
 	private String observation; 
-	@NonNull
+	
 	private String pathology; 
-	@NonNull 
+	
 	@ManyToOne
 	private UrgencyAtention atencion;
 	

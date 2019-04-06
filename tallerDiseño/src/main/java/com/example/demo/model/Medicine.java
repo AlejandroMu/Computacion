@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class Medicine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	@NonNull
 	private String name;
 	@NonNull

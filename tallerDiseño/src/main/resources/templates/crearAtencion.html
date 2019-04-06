@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Crear Atención</title>
+</head>
+
+<body>
+    <form th:action="@{/atencion}" th:object="${atencion}" method="POST">  
+        <select th:field="*{pacient}">
+            <option th:each=" p: ${pacients}" th:value="${p}" th:text="${p.names}"></option>
+        </select>
+        <input type="text" th:field="*{generalDescription}">
+        <input type="text" th:field="*{procedureDone}">
+        <input type="checkbox" th:field="*{transfer}">
+        <input type="text" th:if="*{transfer}" th:field="*{placeTransfer}">
+        <input type="text" th:field="*{observations}">
+        <ul>
+            <li th:each="s : *{supplys}" th:text="${s.medicine+' '+s.amount}"></li>
+            <li><input type="submit" name="action" value="Añadir Suministro"></li>
+        </ul>
+        <input type="submit" name="action" value="Guardar">
+    </form>
+</body>
+
+</html>

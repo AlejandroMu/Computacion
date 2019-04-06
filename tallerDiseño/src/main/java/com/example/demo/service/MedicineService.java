@@ -19,6 +19,7 @@ public class MedicineService{
     @PostConstruct
     public void post(){
         Medicine m1=new Medicine();
+        m1.setName("Acetaminof");
         m1.setAdministationType("via oral");
         m1.setContraIndications("ninguna");
         m1.setGenericName("Acetaminofén");
@@ -29,6 +30,16 @@ public class MedicineService{
         }
         m1.setInventories(l);
         medicines.save(m1); 
+//        inventoryRepository.saveAll(l);
 
     }
+
+	public List<Medicine> getMedicines() {
+        List<Medicine> ret=new ArrayList<Medicine>();
+        Iterable<Medicine> it=medicines.findAll();
+        for (Medicine var : it) {
+            ret.add(var);
+        }
+		return ret;
+	}
 }

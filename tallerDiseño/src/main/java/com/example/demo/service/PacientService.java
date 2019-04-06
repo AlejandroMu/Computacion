@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import com.example.demo.model.Pacient;
@@ -23,4 +26,12 @@ public class PacientService{
     public Pacient getPacient(String id){
         return pacients.findById(id).get();
     }
+	public List<Pacient> getPacients() {
+        List<Pacient> ret=new ArrayList<>();
+        Iterable<Pacient> it=pacients.findAll();
+        for (Pacient var : it) {
+            ret.add(var);
+        }
+		return ret;
+	}
 }

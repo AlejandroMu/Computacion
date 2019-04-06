@@ -3,8 +3,16 @@
     <head>
         <title>Agregar Suministro</title>
     </head>
-
     <body>
-        ...
+        <form th:action="@{/suministro}" method="post" th:object="${supply}">
+            <select th:field="*{medicine}">
+                <option th:each="m : ${medicines}" th:value="${m}" th:text="${m.genericName}"></option>
+             </select>
+             <input type="number" th:field="*{amount}">
+             <input type="text" th:field="*{observation}">
+             <input type="text" th:field="*{pathology}">
+             <input type="submit" name="action" value="Guardar">
+        </form>
+
     </body>
 </html>

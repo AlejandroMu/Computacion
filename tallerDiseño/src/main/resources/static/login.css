@@ -8,6 +8,7 @@
     margin-left:50%; 
     width: 40%;
     height: 35%;
+    background-size: cover;
   }
   .logo{
     width: 100%;
@@ -138,7 +139,7 @@
     height: auto;
     margin: auto auto;
     background: #ffffff;
-    border-radius: 4px;
+    border-radius: 10px;
     box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.12);
   }
   
