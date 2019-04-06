@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;co.edu.icesi.ci.junit.spring.repository.SampleServiceImpl&apos; to &apos;SampleRepositoryImpl&apos;&#x0D;&#x0A;- Original project: &apos;junit-spring-example&apos;&#x0D;&#x0A;- Original element: &apos;co.edu.icesi.ci.junit.spring.repository.SampleServiceImpl&apos;&#x0D;&#x0A;- Renamed element: &apos;co.edu.icesi.ci.junit.spring.repository.SampleRepositoryImpl&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SampleServiceImpl&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;co.edu.icesi.ci.junit.spring.repository{SampleServiceImpl.java[SampleServiceImpl" matchStrategy="1" name="SampleRepositoryImpl" qualified="false" references="true" similarDeclarations="false" stamp="1550000253284" textual="false" version="1.0"/>
+</session>

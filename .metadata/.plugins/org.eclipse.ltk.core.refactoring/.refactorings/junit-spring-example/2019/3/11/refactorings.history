@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;co.edu.icesi.ci.junit.spring&apos; to &apos;co.edu.icesi.ci.junit.spring.unit&apos;&#x0D;&#x0A;- Original project: &apos;junit-spring-example&apos;&#x0D;&#x0A;- Original element: &apos;junit-spring-example/src/test/java/co.edu.icesi.ci.junit.spring&apos;&#x0D;&#x0A;- Renamed element: &apos;junit-spring-example/src/test/java/co.edu.icesi.ci.junit.spring.unit&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;co.edu.icesi.ci.junit.spring&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/test\/java&lt;co.edu.icesi.ci.junit.spring" name="co.edu.icesi.ci.junit.spring.unit" qualified="false" references="true" stamp="1552325499676" textual="false" version="1.0"/>
+</session>
