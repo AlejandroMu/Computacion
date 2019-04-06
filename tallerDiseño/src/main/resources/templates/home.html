@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="opciones.css">
+</head>
+
+<body>
+    <form th:action="@{/evaluar}" th:object="${user}" method="post">
+        <div>
+            <input type="submit" value="CrearAtencion" th:text="*{login}">
+            <input type="submit" value="CrearModificar">
+            <input type="submit" value="CrearSuministro">
+        </div>
+    </form>
+</body>
+
+</html>

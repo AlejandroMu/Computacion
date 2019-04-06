@@ -7,7 +7,8 @@ import javax.annotation.PostConstruct;
 import com.example.demo.repository.*;
 import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
+@Service
 public class InventoryService{
     @Autowired
     private InventoryRepository inventories;

@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	@NonNull
 	@Email
 	private String login;
