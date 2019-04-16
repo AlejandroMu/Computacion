@@ -30,7 +30,7 @@ public class SupplyService {
 				}				
 				if(amountAviable>=newSupply.getAmount()) {
 					newSupply.setDateHour(new Date());
-					supplys.save(newSupply);
+					newSupply= supplys.save(newSupply);
 					int target=newSupply.getAmount();
 					for (MedicineInventory medicineInventory : ientorynv) {
 						int a=medicineInventory.getAmountAvailable();
@@ -46,7 +46,7 @@ public class SupplyService {
 						}
 					}
 				}else{
-					throw new Exception("El medicamento no tiene la cantidad necesaria");
+					throw new Exception("El medicamento "+ med.getGenericName() + " solo dispone de "+amountAviable+" unidades");
 				}
 			}else {
 				throw new Exception("El medicamento no existe");

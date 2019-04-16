@@ -24,10 +24,10 @@ public class Pacient {
 	private String academicProgram;
 	
 	private boolean state;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<UrgencyAtention> atentions;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Supply> supplys;
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private User user;
 }

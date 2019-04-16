@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import java.util.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Data
@@ -18,13 +21,15 @@ public class UrgencyAtention {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@NonNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateHour;
-	
 	@ManyToOne
 	private Pacient pacient;
 	@NonNull
+	@NotBlank(message = "La descipcion es requerida")
 	private String generalDescription;
 	@NonNull
+	@NotBlank(message = "Es necesario el procedimiento")
 	private String procedureDone;
 	private boolean transfer;
 	
@@ -32,6 +37,6 @@ public class UrgencyAtention {
 	@NonNull
 	private String observations;
 	@NonNull
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Supply> supplys;
 }

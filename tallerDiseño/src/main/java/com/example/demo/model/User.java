@@ -20,15 +20,14 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@NonNull
-	@Email
-	private String login;
+	private String username;
 	@NonNull
 	private String name;
 	@NonNull
 	private String lastName;
 	@NonNull
-	@NotEmpty
-	private char[] password;
+	@NotBlank
+	private String password;
 
 	private boolean state;
 	@NonNull

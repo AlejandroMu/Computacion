@@ -25,48 +25,58 @@ public class AtentionService {
 	public boolean addAtention(UrgencyAtention atention) throws Exception {
 		Pacient pacient = atention.getPacient();
 		List<Supply> supplys = atention.getSupplys();
-		Pacient p1=pacients.findByDocument(pacient.getDocument());
-		if (pacient.isState()&&p1!=null) {
-			for (Supply supply : supplys) {
-				if (!supply.getPacient().getDocument().equals(pacient.getDocument())) {
-					throw new Exception("El paciente no coincide con el suministro");
+		Pacient p1 = pacients.findByDocument(pacient.getDocument());
+		if (pacient.isState() && p1 != null) {
+			if (supplys != null) {
+				for (Supply supply : supplys) {
+					if (!supply.getPacient().getDocument().equals(pacient.getDocument())) {
+						throw new Exception("El paciente no coincide con el suministro");
+					}
+				}
+				List<Supply> tmp = new ArrayList<Supply>();
+				boolean fail = false;
+				Exception e1 = new Exception();
+
+				for (Supply supply : supplys) {
+					try {
+						Supply n = supplyService.addSupply(supply);
+						tmp.add(n);
+					} catch (Exception e) {
+						fail = true;
+						e1 = e;
+						break;
+					}
+				}
+				if (fail) {
+					for (Supply supply : tmp) {
+						supplyService.remove(supply);
+					}
+					throw e1;
+				} else {
+					atention.setSupplys(tmp);
 				}
 			}
-			List<Supply> tmp=new ArrayList<Supply>();
-			boolean fail=false;
-			Exception e1=new Exception();
-			for (Supply supply : supplys) {
-				try {
-				Supply n=supplyService.addSupply(supply);
-				tmp.add(n);
-				}catch (Exception e) {
-					fail=true;
-					e1=e;
-					break;
-				}
-			}
-			if(fail) {
-				for (Supply supply : tmp) {
-					supplyService.remove(supply);
-				}
-				throw e1;
-			}
-			atention.setDateHour(new Date());
+			// atention.setDateHour(new Date());
 			atentions.save(atention);
-			
-		}else {
+
+		} else {
 			throw new Exception("El paciente no esta activo");
 		}
 		return true;
 	}
-	public List<UrgencyAtention> getAtencions(){
-		List<UrgencyAtention> atention=new ArrayList<UrgencyAtention>();
-		Iterator<UrgencyAtention> it=atentions.findAll().iterator();
-		while(it.hasNext()){
+
+	public List<UrgencyAtention> getAtencions() {
+		List<UrgencyAtention> atention = new ArrayList<UrgencyAtention>();
+		Iterator<UrgencyAtention> it = atentions.findAll().iterator();
+		while (it.hasNext()) {
 			atention.add(it.next());
 		}
 
 		return atention;
+	}
+
+	public List<UrgencyAtention> getAtencions(Date date) {
+		return atentions.findByDateHour(date);
 	}
 
 }

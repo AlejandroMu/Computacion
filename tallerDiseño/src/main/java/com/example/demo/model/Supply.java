@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -25,6 +27,7 @@ public class Supply {
 	@ManyToOne
 	private Pacient pacient; 
 	@NonNull
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateHour; 
 	@NonNull
 	private String observation; 
