@@ -35,6 +35,7 @@ public class UrgencyAtention {
 	
 	private String placeTransfer;
 	@NonNull
+	@NotBlank(message = "Es necesario las observaciones")
 	private String observations;
 	@NonNull
 	@OneToMany(fetch=FetchType.EAGER)

@@ -12,27 +12,27 @@
             <input class="date" type="date" th:value="*{date}" th:field="*{date}">
             <input class="button" name="action" type="submit" value="Filtrar">
         </div>
-        <p class="empty" th:if="${lis.list!=null&&lis.list.empty}">No hay Atenciones</p>
-       <div th:if="${lis.list!=null&&!lis.list.empty}">
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Paciente</th>
-                    <th>fecha</th>
-                    <th>Descripcion general</th>
-                    <th>Procedimiento realizado</th>
-                    <th>Transferido</th>
-                    <th>Lugar de transferencia</th>
-                    <th>Observaciones</th>
-                    <th>Suministros</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each=" atencion : *{list}">
-                    <td th:text="${atencion.id}"></td>
-                    <td th:text="${atencion.pacient.names}"></td>
-                    <td th:text="${#dates.format(atencion.dateHour,'dd MMM yyyy')}" ></td>
+        <p class="empty" th:if="${lis.list==null||lis.list.empty}">No hay Atenciones</p>
+        <div th:if="${lis.list!=null&&!lis.list.empty}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Paciente</th>
+                        <th>fecha</th>
+                        <th>Descripcion general</th>
+                        <th>Procedimiento realizado</th>
+                        <th>Transferido</th>
+                        <th>Lugar de transferencia</th>
+                        <th>Observaciones</th>
+                        <th>Suministros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each=" atencion : *{list}">
+                        <td th:text="${atencion.id}"></td>
+                        <td th:text="${atencion.pacient.names}"></td>
+                        <td th:text="${#dates.format(atencion.dateHour,'dd MMM yyyy')}" ></td>
                         <td th:text="${atencion.generalDescription}"></td>
                         <td th:text="${atencion.procedureDone}"></td>
                         <td th:text="${atencion.transfer}"></td>
@@ -48,8 +48,12 @@
                     
                 </tbody>
             </table>
+       </div >
+       <div class="opciones">
+           <input class="button" type="submit"  name="action" value="Agregar Atencion">
+           <input class="button" type="submit"  name="action" value="Ir a Inicio">
+
        </div>
-       <input class="button" type="submit"  name="action" value="Agregar Atencion">
 
         </form>
         

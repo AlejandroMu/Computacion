@@ -3,6 +3,7 @@
 
 <head>
     <title>Crear Atención</title>
+    <link rel="stylesheet" href="/crear.css">
 </head>
 
 <body>
@@ -11,14 +12,17 @@
             <input type="hidden" th:field="*{id}" th:value="*{id}">
             <input type="hidden" th:field="*{dateHour}" th:value="*{dateHour}">
         </div>
-
-        <label for="pacient">Paciente</label>
-        <select name="pacient" th:field="*{pacient}">
-            <option th:each=" p: ${pacients}" th:value="${p.document}" th:text="${p.names}"></option>
-        </select>
-        <br>
-        <label for="descripcion">descripcion Generar</label>
-        <input name="descripcion" type="text" th:field="*{generalDescription}"><span class="error" th:if="${#fields.hasErrors('generalDescription')}" th:errors="*{generalDescription}"></span>
+        <div class="conteiner">
+            <label for="pacient">Paciente</label>
+            <select name="pacient" th:field="*{pacient}">
+                <option th:each=" p: ${pacients}" th:value="${p.document}" th:text="${p}"></option>
+            </select>
+            <br>
+            <label for="descripcion">descripcion Generar</label>
+            <input name="descripcion" type="text" th:field="*{generalDescription}"><span class="error" th:if="${#fields.hasErrors('generalDescription')}" th:errors="*{generalDescription}"></span>
+            <br>
+            <label for="fecha">Fecha de atencion</label>
+            <input type="date" th:field="*{dateHour}" th:value="*{dateHour}">
         <br>
         <label for="pro">Procedimiento realizado</label>
         <input name="pro" type="text" th:field="*{procedureDone}"><span class="error" th:if="${#fields.hasErrors('procedureDone')}" th:errors="*{procedureDone}"></span>
@@ -30,13 +34,13 @@
         <input id="iPlace" name="lugar" type="text"  th:field="*{placeTransfer}">
         <br>
         <label for="ob">Observaciones</label>
-        <input name="ob" type="text" th:field="*{observations}">
+        <input name="ob" type="text" th:field="*{observations}"><span class="error" th:if="${#fields.hasErrors('observations')}" th:errors="*{observations}"></span>
         <br>
         <ul>
             <p>Suministros Asignados</p>
             <div th:each="s , count: *{supplys}">
                 <li >
-                    <input class="suministros" type="submit" name="action" th:value="${count.index}" th:text="${s.amount+ ' '+s.medicine.genericName}">
+                    <input class="suministros" type="submit" name="action" th:value="${count.index}" value="eliminar" th:text="${s.amount+ ' '+s.medicine.genericName}">
                 </li>
                 <input type="hidden" th:field="*{supplys[__${count.index}__].id}"
                     th:value="*{supplys[__${count.index}__].id}">
@@ -58,8 +62,11 @@
             <input type="submit" name="action" value="Añadir Suministro">
         </ul>
         <p th:if="${error}" th:text="${error}"></p>
-        <!--input type="hidden" th:field="*{supplys}" th:value="*{supplys}"-->
-        <input type="submit" name="action" value="Guardar">
+        <div class="opciones">
+            <input type="submit" name="action" value="Guardar">
+            <input type="submit" name="action" value="Cancelar">
+        </div>
+    </div>
     </form>
     <script>
         check = document.getElementById("check")

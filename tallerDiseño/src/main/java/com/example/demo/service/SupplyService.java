@@ -16,6 +16,8 @@ public class SupplyService {
 	private PacientRepository pacients;
 	@Autowired
 	private MedicineRepository medicines;
+	@Autowired
+	private InventoryService inventories;
 
 
 	public Supply addSupply(Supply newSupply)throws Exception {
@@ -23,7 +25,7 @@ public class SupplyService {
 		Medicine med=medicines.findById(newSupply.getMedicine().getId()).get();
 		if(p!=null&&p.isState()) {
 			if(med!=null){
-				List<MedicineInventory> ientorynv=med.getInventories();
+				List<MedicineInventory> ientorynv=inventories.filtrar(med);
 				int amountAviable=0;
 				for (MedicineInventory medicineInventory : ientorynv) {
 					amountAviable+=medicineInventory.getAmountAvailable();

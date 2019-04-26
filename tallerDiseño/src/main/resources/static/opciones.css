@@ -1,21 +1,39 @@
+body{
+    background-image: url(http://logopoliskpo.com/wp-content/uploads/2019/03/transformacion-digital-sector-salud.jpg);
+}
 .conteiner{
-    width: 50%;
+    width: 80%;
     height: auto;
-    background-color: burlywood;
     border-radius: 15px;
     margin: 150px auto;   
-
-
 }
 
 .opcion{
-    width: 33%;
+    width: auto;
     height: 100px;
     background-color: antiquewhite;
     font-size: 20px;
-    margin: auto;
+    margin: 10px 10px;
     border-radius: 10px;
 }
 .opcion:hover{
     background-color: gray;
+}
+.logout{
+    width: auto;
+    height: auto;
+    background-color: rgb(215, 239, 250);
+    font-size: 20px;
+    margin: 10px 10px;
+    border-radius: 10px;
+}
+.logout:hover{
+    background-color: brown;
+
+}
+.log{
+    margin-left: 80%;
+}
+.opciones{
+    margin-left: 30%;
 }

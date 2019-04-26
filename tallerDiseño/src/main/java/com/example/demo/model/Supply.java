@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,6 +33,7 @@ public class Supply {
 	@NonNull
 	private String observation; 
 	@NonNull
+	@NotBlank(message = "Este campo es necesario")
 	private String pathology; 
 	
 	@ManyToOne

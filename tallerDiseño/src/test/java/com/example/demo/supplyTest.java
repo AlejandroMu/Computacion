@@ -16,6 +16,7 @@ import com.example.demo.TallerDiseñoApplication;
 import com.example.demo.model.*;
 import com.example.demo.repository.MedicineRepository;
 import com.example.demo.repository.PacientRepository;
+import com.example.demo.service.InventoryService;
 import com.example.demo.service.SupplyService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,6 +29,8 @@ public class supplyTest {
 	private PacientRepository pacients;
 	@Autowired
 	private MedicineRepository medicines;
+	@Autowired
+	private InventoryService inventories;
 
 	private Pacient pacient;
 	private Supply supply;
@@ -60,7 +63,6 @@ public class supplyTest {
 		
 		inv.add(inventory1);
 		
-		medicine.setInventories(inv);
 		supply.setMedicine(medicine);
 		pacients.save(pacient);
 		medicines.save(medicine);
@@ -96,7 +98,7 @@ public class supplyTest {
 		try {
 			context();
 			service.addSupply(supply);
-			List<MedicineInventory> in = medicine.getInventories();
+			List<MedicineInventory> in = inventories.filtrar(medicine);
 			int amount = 0;
 			for (MedicineInventory medicineInventory : in) {
 				amount += medicineInventory.getAmountAvailable();
@@ -113,7 +115,7 @@ public class supplyTest {
 			service.addSupply(supply);
 			fail();
 		} catch (Exception e) {
-			List<MedicineInventory> in = medicine.getInventories();
+			List<MedicineInventory> in = inventories.filtrar(medicine);
 			int amount = 0;
 			for (MedicineInventory medicineInventory : in) {
 				amount += medicineInventory.getAmountAvailable();
@@ -129,7 +131,7 @@ public class supplyTest {
 			service.addSupply(supply);
 			fail();
 		} catch (Exception e) {
-			List<MedicineInventory> in = medicine.getInventories();
+			List<MedicineInventory> in = inventories.filtrar(medicine);
 			int amount = 0;
 			for (MedicineInventory medicineInventory : in) {
 				amount += medicineInventory.getAmountAvailable();

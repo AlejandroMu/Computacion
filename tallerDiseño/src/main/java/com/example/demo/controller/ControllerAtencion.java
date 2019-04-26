@@ -35,14 +35,17 @@ public class ControllerAtencion {
             lis.setList(filtro);
             red.addFlashAttribute("lis", lis);
             return "redirect:/listarAtenciones";
+        }else if(action.equals("Agregar Atencion")){
+            UrgencyAtention atention = new UrgencyAtention();
+            red.addFlashAttribute("atencion", atention);
+            return "redirect:/atencion";
+
         }
-        UrgencyAtention atention = new UrgencyAtention();
-        red.addFlashAttribute("atencion", atention);
-        return "redirect:/atencion";
+        return "redirect:/";
     }
 
     @GetMapping(value = "/atencion")
-    public String getMethodName(@ModelAttribute(value = "atencion") UrgencyAtention atencion, Model model) {
+    public String crearAtencion(@ModelAttribute(value = "atencion") UrgencyAtention atencion, Model model) {
         if (atencion.getDateHour() == null) {
             atencion.setDateHour(new Date());
         }
@@ -74,7 +77,10 @@ public class ControllerAtencion {
         } else if (action.equals("Añadir Suministro")) {
             redirect.addFlashAttribute("atencion", a);
             return "redirect:/suministro";
-        } else {
+        }else if(action.equals("Cancelar")){
+            return "redirect:/";
+        }
+         else {
             int index = Integer.parseInt(action);
             List<Supply> supplys = a.getSupplys();
             supplys.remove(index);

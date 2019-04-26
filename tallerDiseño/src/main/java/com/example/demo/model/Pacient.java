@@ -30,4 +30,7 @@ public class Pacient {
 	private List<Supply> supplys;
 	@OneToOne(fetch = FetchType.EAGER)
 	private User user;
+	public String toString(){
+		return document+" "+names+" "+lastNames;
+	}
 }

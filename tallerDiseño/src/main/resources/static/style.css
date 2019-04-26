@@ -34,9 +34,12 @@ input{
     border-radius: 5px;
     border:2px black;
     background: gray;
-    width: 100px;
+    width: auto;
     height: 30px;;
     
+}
+.opciones{
+    margin-left: 30%;
 }
 div{
     margin: 10px;

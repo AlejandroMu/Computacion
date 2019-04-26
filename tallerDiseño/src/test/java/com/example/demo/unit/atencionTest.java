@@ -70,7 +70,6 @@ public class atencionTest {
 		in1.setAmountAvailable(15);
 		in1.setMedicine(medicine);
 		in.add(in1);
-		medicine.setInventories(in);
 
 		sup.setMedicine(medicine);
 		supplys.add(sup);

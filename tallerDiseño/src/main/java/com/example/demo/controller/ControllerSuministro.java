@@ -33,8 +33,12 @@ public class ControllerSuministro{
     }
 
     @PostMapping(value = "/suministro")
-    public String saveSupply(RedirectAttributes redirect,@ModelAttribute(value = "atencion") UrgencyAtention atencion,
+    public String saveSupply(@RequestParam(value = "action",required = true) String action, RedirectAttributes redirect,@ModelAttribute(value = "atencion") UrgencyAtention atencion,
     @Validated @ModelAttribute(name = "supply") Supply s,BindingResult result) {
+        if(action.equals("Cancelar")){
+            redirect.addFlashAttribute("atencion",atencion);
+            return "redirect:/atencion";
+        }
         if(result.hasErrors()){
             return "Suministro/suministro.html";
         }

@@ -67,7 +67,6 @@ public class TestSupply {
 		inventory.setLocation("Cali");
 		ArrayList<MedicineInventory> inve=new ArrayList<MedicineInventory>();
 		inve.add(inventory);
-		medicine.setInventories(inve);
 		supply.setMedicine(medicine);
 		opM=Optional.of(medicine);
 

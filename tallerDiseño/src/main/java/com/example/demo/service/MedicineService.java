@@ -14,23 +14,19 @@ public class MedicineService{
     @Autowired
     private MedicineRepository medicines;
     @Autowired
-    private InventoryService inventoryRepository;
+    private InventoryService inventoryService;
+    
 
     @PostConstruct
     public void post(){
         Medicine m1=new Medicine();
         m1.setName("Acetaminof");
         m1.setAdministationType("via oral");
+        m1.setIndications("ninguna");
         m1.setContraIndications("ninguna");
         m1.setGenericName("Acetaminofén");
         m1.setLaboratory("genfar");
-        List<MedicineInventory> l=inventoryRepository.getAll();
-        for(MedicineInventory t: l){
-            t.setMedicine(m1);
-        }
-        m1.setInventories(l);
         medicines.save(m1); 
-//        inventoryRepository.saveAll(l);
 
     }
 
@@ -41,5 +37,20 @@ public class MedicineService{
             ret.add(var);
         }
 		return ret;
+    }
+    
+    public Medicine addMedicine(Medicine med){
+        return medicines.save(med);
+    }
+
+	public List<Medicine> filtrar(Date date) {
+        List<MedicineInventory> inventories=inventoryService.filtrar(date);
+        HashSet<Medicine> medicines=new HashSet<>();
+        for (MedicineInventory inv : inventories) {
+            medicines.add(inv.getMedicine());
+        }
+        List<Medicine> med=new ArrayList<>();
+        medicines.forEach(x->med.add(x));
+		return med;
 	}
 }
