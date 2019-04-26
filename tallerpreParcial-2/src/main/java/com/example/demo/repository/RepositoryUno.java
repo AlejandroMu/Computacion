@@ -17,6 +17,7 @@ public class RepositoryUno {
 	@PostConstruct
 	public void init() {
 		System.out.println(objetoUno.getCodigo());
-		System.out.println(objetoDos.getCodigo());
+		System.out.println(objetoDos.getCodigo()+"Uis");
+
 	}
 }
