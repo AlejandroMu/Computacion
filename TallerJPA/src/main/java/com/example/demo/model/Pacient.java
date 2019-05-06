@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Table(name="TPacient")
+@NamedQuery(name="medicine.findAll",query="SELECT t FROM TPacient t;")
 public class Pacient {
 	@Id
 	private String document;
@@ -28,8 +30,7 @@ public class Pacient {
 	private List<UrgencyAtention> atentions;
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Supply> supplys;
-	@OneToOne(fetch = FetchType.EAGER)
-	private User user;
+
 	public String toString(){
 		return document+" "+names+" "+lastNames;
 	}

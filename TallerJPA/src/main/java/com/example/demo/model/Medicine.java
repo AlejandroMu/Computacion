@@ -16,8 +16,8 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name="t_Medicine")
-@NamedQuery(name="medicine.findAll",query="SELECT t FROM t_Medicine t;")
+@Table(name="TMedicine")
+@NamedQuery(name="medicine.findAll",query="SELECT t FROM TMedicine t;")
 public class Medicine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
