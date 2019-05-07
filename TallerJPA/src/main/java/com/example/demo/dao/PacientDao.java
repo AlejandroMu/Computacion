@@ -35,14 +35,40 @@ public class PacientDao implements IPacientDao {
     }
 
     @Override
-    public Pacient findById(String codigo) {
-        return entityManager.find(Pacient.class, codigo);
+    public List<Pacient> findAll() {
+        String jpql = "Select a From TPacient a";
+        return entityManager.createQuery(jpql).getResultList();
     }
 
     @Override
-    public List<Pacient> findAll() {
-        String jpql = "Select a from TPacient a";
-        return entityManager.createQuery(jpql).getResultList();
+    public Pacient findByDocumment(String doc) {
+        return entityManager.find(Pacient.class, doc);
     }
+
+    @Override
+    public List<Pacient> findByName(String name) {
+        String query="Select t From TPacient t Where t.name='"+name+"'";
+        Query q= entityManager.createQuery(query);
+        List<Pacient> ret=q.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<Pacient> findByLastName(String lastName) {
+        String query="Select t From TPacient t Where t.lastName='"+lastName+"'";
+        Query q= entityManager.createQuery(query);
+        List<Pacient> ret=q.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<Pacient> findAllWithAtentions() {
+        String query="Select t,Count(r)"+
+                     "From TPacient t,TAtencion a"+
+                     "Where t.document=a.pacient";
+        return null;
+    }
+
+
 
 }

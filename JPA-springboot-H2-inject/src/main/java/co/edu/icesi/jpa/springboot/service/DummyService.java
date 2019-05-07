@@ -10,7 +10,6 @@ import co.edu.icesi.jpa.springboot.crud.AlumnosRepository;
 import co.edu.icesi.jpa.springboot.crud.MateriasRepository;
 import co.edu.icesi.jpa.springboot.dao.ITAlumnoDao;
 import co.edu.icesi.jpa.springboot.model.TAlumno;
-
 import lombok.extern.java.Log;
 
 @Service
